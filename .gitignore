@@ -1,4 +1,17 @@
+# Terraform working directory
 .terraform/
+
+# Terraform state and backups
 *.tfstate
+*.tfstate.*
 *.tfstate.backup
-.terraform.lock.hcl
+
+# Variable files that may contain secrets
+*.tfvars
+*.tfvars.json
+!devops.tfvars
+
+# Sensitive local files
+.env
+*.pem
+*.key
