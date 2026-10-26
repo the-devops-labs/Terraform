@@ -1,89 +1,102 @@
 # Terraform Infrastructure Projects
 
-**Infrastructure as Code | AWS | Terraform | Cloud Automation**
+**Infrastructure as Code (IaC) | AWS | Terraform | DevOps Automation**
 
-A hands-on collection of Terraform projects focused on provisioning cloud infrastructure, organizing reusable configurations, and applying Infrastructure as Code principles to practical DevOps scenarios.
+A hands-on collection of Terraform projects focused on cloud infrastructure provisioning, reusable modules, infrastructure organization, and practical Infrastructure as Code workflows.
 
-This repository documents my practical work with Terraform, from infrastructure configuration and modular design to environment-specific deployments and infrastructure lifecycle management.
+This repository documents my journey of building maintainable cloud infrastructure using Terraform, with an emphasis on modular design, configuration management, and operational best practices.
 
 ---
 
-## Overview
+##  Overview
 
-The objective of this repository is to develop and demonstrate practical skills in:
+The objective of this repository is to demonstrate practical knowledge of Terraform and AWS through structured infrastructure projects.
 
-- **Infrastructure as Code (IaC):** Define and manage infrastructure using declarative Terraform configurations.
-- **Modular Design:** Organize configurations into reusable components to improve maintainability.
-- **Configuration Management:** Use variables, local values, outputs, and variable files to structure infrastructure definitions.
-- **Cloud Networking:** Work with VPC-related resources and network configuration.
-- **Infrastructure Lifecycle:** Initialize, validate, plan, deploy, and manage infrastructure changes using Terraform.
-- **Operational Practices:** Apply version control, secure credential handling, and cost-aware infrastructure management.
+Key areas covered include:
 
-The repository will evolve as additional projects, architecture diagrams, and infrastructure scenarios are implemented and validated.
+- **Infrastructure as Code:** Define and manage infrastructure using declarative Terraform configurations.
+- **Reusable Modules:** Organize infrastructure components into reusable modules.
+- **Cloud Networking:** Structure VPC-related infrastructure and network components.
+- **Compute and Database Infrastructure:** Organize frontend, backend, and database-related configurations.
+- **Load Balancing:** Maintain a dedicated module for Application Load Balancer configuration.
+- **Configuration Management:** Use variables, outputs, local values, and environment-oriented directories.
+- **Infrastructure Lifecycle:** Initialize, validate, plan, apply, and manage Terraform configurations.
+- **Operational Best Practices:** Follow secure credential handling, version control, and cost-aware deployment practices.
 
-## Technology Stack
+##  Technology Stack
 
 | Technology | Purpose |
 |---|---|
 | Terraform | Infrastructure provisioning and lifecycle management |
-| AWS | Cloud infrastructure and networking |
-| HCL | Declarative infrastructure configuration |
-| Git and GitHub | Version control and project collaboration |
-| VS Code | Infrastructure development and configuration editing |
+| AWS | Cloud infrastructure platform |
+| HCL | Terraform configuration language |
+| Git | Version control |
+| GitHub | Source code hosting and project documentation |
+| VS Code | Infrastructure development |
 
-## Project Directory
+##  Projects
 
 ### Project 1 — VPC Module and Infrastructure Configuration
 
 **Directory:** `Project1/`
 
-This project organizes Terraform configuration around a VPC module and separates infrastructure definitions, input variables, outputs, provider configuration, and development-specific variable values.
+This project contains Terraform configuration organized around a VPC module, with separate files for providers, variables, outputs, and development-specific variable values.
 
-**Configuration areas:**
+**Key configuration areas:**
 - Main Terraform configuration
+- Reusable VPC module
 - Input variables and output values
 - Provider configuration
-- Reusable VPC module
 - Development variable file (`dev.tfvars`)
 - User-data template (`userdata.tpl`)
 - Infrastructure graph (`graph.svg`)
 
-**Concepts explored:** Terraform modules, input variables, outputs, provider configuration, variable files, and infrastructure dependencies.
+**Terraform concepts:** Modules, variables, outputs, provider configuration, variable files, and infrastructure dependencies.
 
-### Project 2 — Modular and Environment-Oriented Configuration
+### Project 2 — Modular AWS Infrastructure
 
 **Directory:** `Project2/`
 
-This project uses a directory structure that separates environment-related configuration and modules from the main Terraform configuration.
+This project organizes AWS infrastructure into separate Terraform modules to improve maintainability, reuse, and separation of responsibilities.
 
-**Configuration areas:**
-- Main Terraform configuration
-- Variables and local values
-- Provider configuration
-- Environment directory (`envs/`)
-- Modules directory (`modules/`)
-- Infrastructure graph (`graph.dot`)
+**Modules:**
 
-**Concepts explored:** Configuration organization, reusable modules, local values, variables, and environment-specific infrastructure management.
+| Module | Purpose |
+|---|---|
+| `VPC` | VPC and networking-related infrastructure |
+| `ALB` | Application Load Balancer-related infrastructure |
+| `RDS` | Relational database-related infrastructure |
+| `frontend_ec2` | Frontend EC2-related infrastructure |
+| `backend_ec2` | Backend EC2-related infrastructure |
+
+The module structure separates each component's main configuration, input variables, and output values.
+
+**Terraform concepts:**
+- Reusable modules
+- Input variables and output values
+- Modular infrastructure organization
+- Local values and centralized configuration
+- Environment-oriented directory structure
+- Infrastructure dependencies and lifecycle management
+
+**Objective:** Build a modular AWS infrastructure configuration that is easier to understand, maintain, and extend.
 
 ### Project 3 — Independent Terraform Configuration
 
 **Directory:** `Project3/`
 
-This project maintains a separate Terraform configuration with its own main configuration, provider definition, and Terraform settings.
+This project contains a separate Terraform configuration with dedicated main, provider, and Terraform settings files.
 
-**Configuration areas:**
+**Key configuration areas:**
 - Main Terraform configuration
 - Provider configuration
 - Terraform settings and requirements
 
-**Concepts explored:** Terraform project structure, provider setup, and configuration management.
+**Objective:** Practice organizing and managing an independent Terraform configuration.
 
-> Project descriptions summarize the visible repository structure. Refer to the actual Terraform configuration for the resources and functionality implemented in each project.
+> Project descriptions reflect the repository structure. The actual resources, architecture, and deployment behavior should be verified against the Terraform configuration files.
 
----
-
-## Repository Structure
+##  Repository Structure
 
 ```text
 Terraform/
@@ -109,6 +122,26 @@ Terraform/
 │   ├── graph.dot
 │   ├── envs/
 │   └── modules/
+│       ├── ALB/
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── RDS/
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── VPC/
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── backend_ec2/
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       └── frontend_ec2/
+│           ├── main.tf
+│           ├── outputs.tf
+│           └── variables.tf
 │
 └── Project3/
     ├── main.tf
@@ -116,18 +149,18 @@ Terraform/
     └── terraform.tf
 ```
 
-## Prerequisites
+## ⚙️ Prerequisites
 
-Before running any project, ensure the following tools and access are available:
+Before running a project, ensure you have:
 
-- Terraform CLI
-- AWS CLI
+- Terraform CLI installed
+- AWS CLI installed
 - An AWS account
 - Appropriate AWS IAM permissions
-- Git
-- A code editor such as VS Code
+- Git installed
+- Basic knowledge of AWS and Terraform
 
-Verify the installations:
+Verify your installations:
 
 ```bash
 terraform version
@@ -135,9 +168,11 @@ aws --version
 git --version
 ```
 
-Configure AWS credentials using an approved method, such as an AWS CLI profile or IAM role. Do not hardcode credentials in Terraform configuration files.
+Configure AWS authentication using an approved method, such as an AWS CLI profile or IAM role.
 
-## Getting Started
+Never hardcode AWS credentials in Terraform files.
+
+##  Getting Started
 
 ### 1. Clone the repository
 
@@ -146,15 +181,15 @@ git clone https://github.com/the-devops-labs/Terraform.git
 cd Terraform
 ```
 
-### 2. Select a project
+### 2. Choose a project
 
-For example, to work with Project 1:
+For example:
 
 ```bash
-cd Project1
+cd Project2
 ```
 
-Review the configuration and any project-specific variable requirements before proceeding.
+Review the root configuration, module references, and environment-specific settings before running Terraform.
 
 ### 3. Initialize Terraform
 
@@ -162,118 +197,134 @@ Review the configuration and any project-specific variable requirements before p
 terraform init
 ```
 
-Initialization downloads the required provider plugins and prepares the working directory.
+This initializes the working directory and downloads the required provider plugins and modules.
 
-### 4. Format and validate the configuration
+### 4. Format and validate
 
 ```bash
 terraform fmt -check -recursive
 terraform validate
 ```
 
-Run these commands from the relevant project directory. If the project uses nested modules, review their formatting and validation requirements as well.
+Run the commands from the relevant Terraform root directory. Validation requires successful initialization and the configuration's required inputs and providers to be defined appropriately.
 
 ### 5. Review the execution plan
 
-For Project 1, if `dev.tfvars` contains the required values:
+```bash
+terraform plan
+```
+
+If a project requires a particular variable file, pass it explicitly:
 
 ```bash
 terraform plan -var-file="dev.tfvars"
 ```
 
-For other projects, use the variable files and configuration instructions applicable to those projects.
+Use the correct path and filename for the selected project. The `dev.tfvars` example applies to Project 1 only if that file supplies the required inputs.
 
 ### 6. Apply the configuration
 
-After reviewing the proposed changes, resource permissions, and estimated costs:
+After reviewing the plan, IAM permissions, and potential AWS charges:
+
+```bash
+terraform apply
+```
+
+For a project that requires the development variable file:
 
 ```bash
 terraform apply -var-file="dev.tfvars"
 ```
 
-Use the variable-file argument only for projects that require that file. For other projects, follow their configuration requirements.
+Only apply changes when you understand which resources Terraform intends to create, modify, or destroy.
 
-**Important:** Terraform may create billable AWS resources. Apply changes only when you understand the proposed infrastructure and have permission to create it.
+##  Terraform Workflow
 
----
-
-## Terraform Workflow
-
-The standard workflow for these projects is:
+The typical infrastructure workflow is:
 
 ```text
-Write Configuration
-        |
-        v
+Configuration
+     |
+     v
 terraform fmt
-        |
-        v
+     |
+     v
 terraform init
-        |
-        v
+     |
+     v
 terraform validate
-        |
-        v
+     |
+     v
 terraform plan
-        |
-        v
+     |
+     v
 Review Changes
-        |
-        v
+     |
+     v
 terraform apply
-        |
-        v
-Verify Resources
-        |
-        v
-Clean Up When Appropriate
+     |
+     v
+Verify Infrastructure
+     |
+     v
+Cleanup When Required
 ```
 
-The plan should be reviewed before applying changes. For shared or production infrastructure, use an appropriate review and approval process rather than applying changes without authorization.
+This workflow supports consistent configuration, validation, and controlled infrastructure changes.
 
-## Security and Operational Practices
+##  Security and Best Practices
 
-Infrastructure automation must account for security, reliability, and cost.
+Security and operational safety are important when managing infrastructure as code.
 
-- **Credential security:** Never commit AWS access keys, secret keys, passwords, or private keys.
-- **State protection:** Do not commit Terraform state files. State can contain sensitive values.
-- **Provider consistency:** Keep `.terraform.lock.hcl` under version control where appropriate to preserve selected provider versions.
-- **Least privilege:** Use only the IAM permissions required for the task.
-- **Change review:** Inspect Terraform plans before applying changes.
-- **Cost awareness:** Review resource types, regions, and ongoing charges before deployment.
-- **Configuration hygiene:** Keep generated files, local caches, and sensitive variable files out of Git.
-- **State management:** Use an appropriately secured remote backend and locking mechanism when required by the project and supported by the chosen backend configuration.
+- **Credential management:** Never commit access keys, passwords, tokens, or private keys.
+- **State protection:** Do not commit Terraform state files because they may contain sensitive information.
+- **Provider version control:** Track `.terraform.lock.hcl` where appropriate to preserve provider selections.
+- **Least privilege:** Grant only the AWS IAM permissions required for the deployment.
+- **Plan review:** Inspect Terraform plans before applying changes.
+- **Cost management:** Review resource types, regions, and potential recurring charges.
+- **Git hygiene:** Exclude local caches, state files, credentials, and real secret-containing variable files.
+- **Remote state:** For collaborative use, configure an appropriately secured remote backend and suitable state-locking mechanism.
+- **Configuration quality:** Keep infrastructure components organized and use variables and outputs where they improve reuse and clarity.
 
-## Cleanup
+##  Cleanup
 
-When infrastructure is no longer required, first review the resources Terraform proposes to destroy:
+After testing, review which resources Terraform proposes to destroy:
 
 ```bash
 terraform plan -destroy
 ```
 
-If the plan is correct, and you have confirmed that the resources are safe to remove:
+If the plan is correct and you are authorized to remove those resources:
 
 ```bash
 terraform destroy
 ```
 
-Run these commands from the correct project directory and use the same backend and variable configuration as the deployment where required.
+Run cleanup from the correct Terraform root directory and use the appropriate backend and variable configuration.
 
-Never destroy shared or production infrastructure without authorization and a careful review.
+**Warning:** Never destroy shared or production resources without authorization and a careful review.
 
-## Continuous Improvement
+## 📈 Continuous Improvement
 
-This repository is maintained as a practical Infrastructure as Code portfolio. The focus is on building understandable configurations, improving modularity, validating infrastructure changes, and documenting implementation decisions.
+This repository is intended to evolve as additional infrastructure scenarios are implemented and tested.
 
-Future improvements may include additional cloud infrastructure scenarios, automated Terraform checks, stronger security validation, and expanded architecture documentation as those features are implemented.
+Planned areas for improvement include:
 
-## Author
+- More reusable Terraform modules
+- Better environment separation
+- Infrastructure architecture diagrams
+- Automated formatting and validation checks
+- Security and configuration validation
+- Improved documentation of deployment decisions
+
+These items will be added as they are implemented and verified.
+
+##  Author
 
 **The DevOps Lab**
 
-GitHub: [the-devops-labs](https://github.com/the-devops-labs)
+GitHub: [@the-devops-labs](https://github.com/the-devops-labs)
 
 ---
 
-*Learning by building. Improving through automation. Managing infrastructure as code.*
+*Building infrastructure as code. Improving through automation. Learning by doing.*
