@@ -6,7 +6,7 @@ data "aws_ami" "ubuntu" {
     values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"] # ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*
   }
 
-  owners = ["099720109477"] # Canonical (official Ubuntu publisher)
+  owners = ["099720109477"] # Canonical(official Ubuntu publisher)
 }
 
 resource "aws_instance" "app_server" {
