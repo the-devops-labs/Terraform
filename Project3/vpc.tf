@@ -16,9 +16,10 @@ resource "aws_vpc" "vpc" {
 #################################
 
 resource "aws_subnet" "public_subnet_1" {
-  vpc_id            = aws_vpc.vpc.id ## Reference a resource attribute: <resource_type>.<resource_name>.<attribute>
-  cidr_block        = var.pub_subnet_1
-  availability_zone = var.az-1
+  vpc_id                  = aws_vpc.vpc.id ## Reference a resource attribute: <resource_type>.<resource_name>.<attribute>
+  cidr_block              = var.pub_subnet_1
+  availability_zone       = var.az-1
+  map_public_ip_on_launch = true ## Automatically assigns public IPv4 addresses to instances launched in this subnet by default. 
 
   tags = {
     Name = var.subnet_name1
