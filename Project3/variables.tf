@@ -4,17 +4,41 @@ variable "region" {
   default     = "ap-southeast-1"
 }
 
-variable "instance_type" {
+###################################
+# Variables for App Server EC2
+###################################
+
+variable "app_instance_type" {
   type        = string
-  description = "VM type for the web server"
+  description = "VM type for the App server"
   default     = "t3.micro"
 }
 
-variable "tags" {
+variable "aap_instance_name" {
   type        = string
   description = "tag manage the name of vm"
-  default     = "devOps-ec2"
+  default     = "app-server-ec2"
 }
+
+###################################
+# Variables for Web Server EC2
+###################################
+
+variable "web_instance_type" {
+  type        = string
+  description = "VM type for the Web server"
+  default     = "t3.micro"
+}
+
+variable "web_instance_name" {
+  type        = string
+  description = "tag manage the name of vm"
+  default     = "web-server-ec2"
+}
+
+###################################
+# Variables for VPC
+###################################
 
 variable "vpc_cidr" {
   type        = string
@@ -182,3 +206,15 @@ variable "private_rtb" {
   description = "Defines the name of the Public Route Table"
   default     = "Private-rtb"
 }
+
+
+#######################################
+# Variable for Web server eip Name
+#######################################
+
+variable "web_server_eip" {
+  type = string
+  description = "Defines the name of the eip"
+  default = "web_eip"  
+}
+
