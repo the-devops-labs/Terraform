@@ -56,11 +56,41 @@ resource "aws_eip" "web_server_1_ip" {
   tags = {
     Name = var.web_server_eip
   }
-  
+
 }
 
 #This resource block assign the eip to ec2
 resource "aws_eip_association" "eip_associate" {
+  instance_id   = aws_instance.web_server_1.id
+  allocation_id = aws_eip.web_server_1_ip.id
+}
+
+
+
+#######################################
+# EBS Volume for Public EC2 
+#######################################
+
+resource "aws_ebs_volume" "ebs_web" {
+  availability_zone = var.az-1
+  size              = var.ebs_size
+  encrypted         = var.ebs_encrypted
+  type              = var.ebs_type
+  iops              = var.ebs_iops
+  throughput        = var.ebs_throughput
+
+  tags = {
+    Name = var.ebs_volume
+  }
+}
+
+
+#######################################
+# EBS Volume attachment to Ec2
+#######################################
+
+resource "aws_volume_attachment" "web_vol_attach" {
+  device_name = "/dev/sdf"
+  volume_id   = aws_ebs_volume.ebs_web.id
   instance_id = aws_instance.web_server_1.id
-  allocation_id = aws_eip.web_server_1_ip.id 
 }

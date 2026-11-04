@@ -213,8 +213,49 @@ variable "private_rtb" {
 #######################################
 
 variable "web_server_eip" {
-  type = string
+  type        = string
   description = "Defines the name of the eip"
-  default = "web_eip"  
+  default     = "web_eip"
 }
 
+
+#######################################
+# Variable for EBS Volume
+#######################################
+
+variable "ebs_volume" {
+  type        = string
+  description = "Defines the name of the EBS volume"
+  default     = "web-ebs"
+}
+
+variable "ebs_size" {
+  type        = number
+  description = "Defines the size of the EBS volume in GiB"
+  default     = "30"
+}
+
+variable "ebs_type" {
+  type        = string
+  description = "Defines the EBS volume type, such as gp2, gp3, io1, or io2"
+  default     = "gp3"
+
+}
+
+variable "ebs_encrypted" {
+  type        = bool
+  description = "Enables or disables encryption for the EBS volume"
+  default     = true
+}
+
+variable "ebs_iops" {
+  type        = number
+  description = "Defines the provisioned IOPS for the EBS volume."
+  default     = 3000
+}
+
+variable "ebs_throughput" {
+  type        = number
+  description = "Defines the EBS volume throughput in MiB/s."
+  default     = 125
+}
