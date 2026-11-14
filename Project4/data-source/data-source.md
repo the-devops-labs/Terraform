@@ -1,6 +1,6 @@
 # Project 4: Terraform AWS Data Sources – Discover Existing Infrastructure
 
-## 📌 Project Overview
+##  Project Overview
 
 This project demonstrates how to use **Terraform Data Sources** to retrieve information about existing AWS infrastructure and reuse that information when provisioning new resources.
 
@@ -15,7 +15,7 @@ In this hands-on project, I used Terraform Data Sources to:
 
 The objective is to understand how Terraform can work with existing AWS infrastructure while provisioning additional resources.
 
-## 🎯 Project Objectives
+##  Project Objectives
 
 - Understand the difference between Terraform Resources and Data Sources.
 - Retrieve an existing AWS VPC using a Data Source.
@@ -24,7 +24,7 @@ The objective is to understand how Terraform can work with existing AWS infrastr
 - Reference Data Source attributes inside Terraform resource blocks.
 - Understand how Terraform reads and interacts with existing AWS infrastructure.
 
-## 🏗️ Architecture
+##  Architecture
 
 The following diagram represents the infrastructure workflow implemented in this project.
 
@@ -55,7 +55,7 @@ The following diagram represents the infrastructure workflow implemented in this
                      Subnet
 ```
 
-## 🛠️ AWS Resources
+##  AWS Resources
 
 | AWS Resource   | Implementation | Purpose                                      |
 | -------------- | -------------- | -------------------------------------------- |
@@ -75,7 +75,7 @@ The following diagram represents the infrastructure workflow implemented in this
 | Instance Type        | `t3.micro`              |
 | Deployment Subnet    | Existing private subnet |
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 Project4/
@@ -91,7 +91,7 @@ Project4/
 
 *Note: The structure above is illustrative. Adjust the file names to match the actual files in Project4.*
 
-## 🔍 Terraform Concepts Implemented
+##  Terraform Concepts Implemented
 
 ### 1. VPC Data Source
 
@@ -129,7 +129,7 @@ The instance configuration includes:
 - Dynamically retrieved private subnet ID.
 - Name tag: `data-source-ec2`.
 
-## ⚙️ Prerequisites
+##  Prerequisites
 
 Before running this project, make sure you have:
 
@@ -140,7 +140,7 @@ Before running this project, make sure you have:
 - An existing VPC and private subnet in `ap-south-1`.
 - AWS credentials configured securely outside the Terraform configuration.
 
-## 🚀 How to Execute
+##  How to Execute
 
 ### Step 1: Clone the Repository
 
@@ -185,7 +185,7 @@ terraform apply
 
 Review the AWS resources and potential charges before approving the deployment.
 
-## 🧪 Validation Results
+##  Validation Results
 
 The Data Sources were successfully tested using `terraform plan`.
 
@@ -210,7 +210,7 @@ This confirms that Terraform successfully retrieved the existing AWS infrastruct
 - EC2 Resource: Configuration added.
 - EC2 Deployment: Pending deployment validation.
 
-## 💡 Key Learnings
+##  Key Learnings
 
 Through this hands-on implementation, I learned:
 
@@ -229,7 +229,7 @@ Through this hands-on implementation, I learned:
 | Uses the `resource` block.          | Uses the `data` block.                               |
 | Example: `aws_instance`             | Example: `aws_ami`                                   |
 
-## 🔐 Best Practices
+##  Best Practices
 
 - Avoid hardcoding AMI IDs when dynamic discovery is appropriate.
 - Use variables for configurable infrastructure values.
@@ -240,7 +240,7 @@ Through this hands-on implementation, I learned:
 - Protect Terraform state files because they can contain sensitive information.
 - Verify subnet routing and security group configuration before deploying EC2 instances.
 
-## 📚 Official Documentation
+##  Official Documentation
 
 - [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [AWS VPC Data Source](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc)
@@ -251,7 +251,7 @@ Through this hands-on implementation, I learned:
 
 ---
 
-## 👨‍💻 Author
+##  Author
 
 **Omvir Singh | AI Infrastructure Engineer | DevOps Engineer**
 
