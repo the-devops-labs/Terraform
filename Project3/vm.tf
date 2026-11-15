@@ -19,9 +19,7 @@ resource "aws_instance" "app_server_1" {
   instance_type = var.app_instance_type
   subnet_id     = aws_subnet.private_subnet_1.id
 
-  tags = {
-    Name = var.aap_instance_name
-  }
+  tags = merge(local.common_tags, local.ec2_name.app_server)
 }
 
 #######################################
@@ -38,9 +36,7 @@ resource "aws_instance" "web_server_1" {
   #associate_public_ip_address = true    ##Best when we want to control public IP assignment for a specific instance 
 
 
-  tags = {
-    Name = var.web_instance_name
-  }
+  tags = merge(local.common_tags, local.ec2_name.web_server)
 }
 
 
@@ -53,9 +49,7 @@ resource "aws_instance" "web_server_1" {
 resource "aws_eip" "web_server_1_ip" {
   domain = "vpc"
 
-  tags = {
-    Name = var.web_server_eip
-  }
+  tags = merge(local.common_tags, local.web_server_eip)
 
 }
 
@@ -72,16 +66,14 @@ resource "aws_eip_association" "eip_associate" {
 #######################################
 
 resource "aws_ebs_volume" "ebs_web" {
-  availability_zone = var.az-1
+  availability_zone = var.az_1
   size              = var.ebs_size
   encrypted         = var.ebs_encrypted
   type              = var.ebs_type
   iops              = var.ebs_iops
   throughput        = var.ebs_throughput
 
-  tags = {
-    Name = var.ebs_volume
-  }
+  tags = merge(local.common_tags, local.web_ebs_tags)
 }
 
 
