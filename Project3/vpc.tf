@@ -6,9 +6,8 @@ resource "aws_vpc" "vpc" {
   cidr_block       = var.vpc_cidr ## Reference a variable: var.<variable_name>
   instance_tenancy = "default"
 
-  tags = {
-    Name = var.vpc_name
-  }
+  tags = merge(local.common_tags, local.vpc_tags)
+
 }
 
 #################################
@@ -18,7 +17,7 @@ resource "aws_vpc" "vpc" {
 resource "aws_subnet" "public_subnet_1" {
   vpc_id                  = aws_vpc.vpc.id ## Reference a resource attribute: <resource_type>.<resource_name>.<attribute>
   cidr_block              = var.pub_subnet_1
-  availability_zone       = var.az-1
+  availability_zone       = var.az_1
   map_public_ip_on_launch = true ## Automatically assigns public IPv4 addresses to instances launched in this subnet by default. 
 
   tags = {
@@ -27,9 +26,10 @@ resource "aws_subnet" "public_subnet_1" {
 }
 
 resource "aws_subnet" "public_subnet_2" {
-  vpc_id            = aws_vpc.vpc.id ## Reference a resource attribute: <resource_type>.<resource_name>.<attribute>
-  cidr_block        = var.pub_subnet_2
-  availability_zone = var.az-2
+  vpc_id                  = aws_vpc.vpc.id ## Reference a resource attribute: <resource_type>.<resource_name>.<attribute>
+  cidr_block              = var.pub_subnet_2
+  availability_zone       = var.az_2
+  map_public_ip_on_launch = true
 
   tags = {
     Name = var.subnet_name2
@@ -44,7 +44,7 @@ resource "aws_subnet" "public_subnet_2" {
 resource "aws_subnet" "private_subnet_1" {
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = var.priv_subnet_1
-  availability_zone = var.priv-az-1
+  availability_zone = var.priv_az_1
 
   tags = {
     Name = var.priv_subnet_name1
@@ -54,7 +54,7 @@ resource "aws_subnet" "private_subnet_1" {
 resource "aws_subnet" "private_subnet_2" {
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = var.priv_subnet_2
-  availability_zone = var.priv-az-2
+  availability_zone = var.priv_az_2
 
   tags = {
     Name = var.private_subnet_name2
@@ -68,9 +68,7 @@ resource "aws_subnet" "private_subnet_2" {
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
-  tags = {
-    Name = var.dev-igw
-  }
+  tags = merge(local.common_tags, local.igw_tags)
 }
 
 #################################
@@ -111,9 +109,7 @@ resource "aws_route_table_association" "associate_public_subnet_2" {
 resource "aws_eip" "nat_eip" {
   domain = "vpc"
 
-  tags = {
-    Name = var.elastic_ip
-  }
+  tags = merge(local.common_tags, local.eip_tags)
 }
 #################################
 # NAT Gateway
@@ -123,9 +119,7 @@ resource "aws_nat_gateway" "nat_gw" {
   allocation_id = aws_eip.nat_eip.id
   subnet_id     = aws_subnet.public_subnet_1.id
 
-  tags = {
-    Name = var.nat_gw
-  }
+  tags = merge(local.common_tags, local.nat_gw_tags)
 }
 
 
